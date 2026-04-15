@@ -1,0 +1,673 @@
+{
+  "users": [
+    {
+      "name": "Demo Student",
+      "email": "demo@college.edu",
+      "dob": "2003-01-01",
+      "roll": "CSE2025001",
+      "password": "demo",
+      "phone": "+91 98765 43210",
+      "alternatePhone": "+91 91234 56780",
+      "gender": "Male",
+      "address": "Bengaluru, Karnataka",
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "branch": "Computer Science and Engineering",
+      "specialization": "Artificial Intelligence and Data Science",
+      "year": 4,
+      "section": "A",
+      "semester": 8,
+      "academicCGPA": 8.5,
+      "backlogs": 0,
+      "tenth": 90,
+      "twelfth": 85,
+      "diploma": 0,
+      "resumeVersion": "Resume_new.pdf",
+      "portfolioUrl": "https://portfolio.example.com/demo-student",
+      "linkedinUrl": "https://linkedin.com/in/demo-student",
+      "githubUrl": "https://github.com/demo-student",
+      "leetcodeUrl": "https://leetcode.com/demo-student",
+      "preferredLocations": "Bengaluru, Hyderabad, Pune",
+      "expectedCtc": "10-14 LPA",
+      "willingToRelocate": true,
+      "internshipExperience": "6-month software engineering internship at Finverse.",
+      "certifications": "AWS Cloud Practitioner, Google Data Analytics",
+      "achievements": "Top 5 in Smart India Hackathon internal round.",
+      "technicalSkills": "React, Node.js, SQL, Python, DSA, System Design",
+      "softSkills": "Communication, ownership, presentation, stakeholder management",
+      "placementCoordinator": "Ananya Rao",
+      "mentorName": "Prof. Vivek Kumar",
+      "attendance": 92,
+      "noticeBoardOptIn": true,
+      "isPlaced": true,
+      "placedCategory": "Core",
+      "jobsOffered": 1,
+      "dreamApplicationsLeft": 1,
+      "profileCompletion": 92,
+      "profileHealth": "Strong",
+      "currentOffer": {
+        "company": "FinTech Pro",
+        "role": "Business Analyst",
+        "ctc": "9.5 LPA",
+        "joining": "2026-07-14"
+      },
+      "myApplications": [
+        {
+          "id": "fintech-pro-application",
+          "driveId": "fintech-pro",
+          "source": "drive",
+          "company": "FinTech Pro",
+          "role": "Business Analyst",
+          "status": "Rejected",
+          "stage": "Rejected",
+          "package": "9.5 LPA",
+          "location": "Bengaluru",
+          "appliedOn": "2026-03-28",
+          "nextStepDate": "2026-04-08",
+          "recruiter": "Campus Hiring Team",
+          "mode": "Hybrid",
+          "roleDescription": "Support product and growth teams with analytics, stakeholder reporting, and operational problem solving.",
+          "companyDescription": "FinTech Pro is a digital payments and lending platform hiring analysts for business intelligence and product operations."
+        }
+      ],
+      "id": "CSE2025001",
+      "wishlist": [
+        "global-titans",
+        "robo-corp"
+      ],
+      "resumeData": {
+        "fileName": "Resume_new.pdf",
+        "extractedSkills": [
+          "Node.js",
+          "Express",
+          "JavaScript",
+          "Java",
+          "SQL",
+          "PostgreSQL",
+          "Git",
+          "API"
+        ],
+        "extractedCgpa": 0,
+        "extractedProjects": [
+          "level",
+          "understanding. Passionate about applying core CS concepts to real",
+          "world software systems."
+        ],
+        "lastParsedAt": "2026-04-05T14:54:43.544Z"
+      }
+    }
+  ],
+  "drives": [
+    {
+      "id": "tech-innovate",
+      "company": "Tech Innovate",
+      "role": "Software Development Engineer",
+      "category": "Core",
+      "type": "Full Time",
+      "mode": "Hybrid",
+      "location": "Bengaluru / Hyderabad",
+      "date": "2026-04-20",
+      "driveDate": "2026-04-12",
+      "slots": 18,
+      "package": "11 LPA",
+      "eligibility": 7,
+      "maxBacklogs": 0,
+      "bond": "No bond",
+      "rounds": "OA, Technical 1, Technical 2, HR",
+      "skills": [
+        "React",
+        "Node.js",
+        "DSA",
+        "SQL"
+      ],
+      "description": "Work on customer-facing product engineering, distributed services, and modern internal tooling.",
+      "allowedBranches": [
+        "Computer Science and Engineering",
+        "Information Technology",
+        "Electronics and Communication Engineering",
+        "Electrical and Electronics Engineering"
+      ],
+      "createdAt": "2026-04-01T09:00:00.000Z"
+    },
+    {
+      "id": "global-titans",
+      "company": "Global Titans",
+      "role": "Data Scientist",
+      "category": "Dream",
+      "type": "Full Time",
+      "mode": "Onsite",
+      "location": "Gurugram",
+      "date": "2026-04-15",
+      "driveDate": "2026-04-10",
+      "slots": 10,
+      "package": "18 LPA",
+      "eligibility": 8.5,
+      "maxBacklogs": 0,
+      "bond": "No bond",
+      "rounds": "Assessment, Case Study, Technical, Leadership",
+      "skills": [
+        "Python",
+        "ML",
+        "SQL",
+        "Statistics"
+      ],
+      "description": "Join the AI and analytics team working on production data science pipelines for enterprise decision systems.",
+      "allowedBranches": [
+        "Computer Science and Engineering",
+        "Information Technology",
+        "Electronics and Communication Engineering"
+      ],
+      "createdAt": "2026-04-02T09:00:00.000Z"
+    },
+    {
+      "id": "future-services",
+      "company": "Future Services",
+      "role": "Graduate Engineer Trainee",
+      "category": "Mass",
+      "type": "Full Time",
+      "mode": "Onsite",
+      "location": "PAN India",
+      "date": "2026-04-25",
+      "driveDate": "2026-04-17",
+      "slots": 120,
+      "package": "4.5 LPA",
+      "eligibility": 6,
+      "maxBacklogs": 1,
+      "bond": "12 months",
+      "rounds": "Aptitude, Coding, Interview",
+      "skills": [
+        "Problem Solving",
+        "Communication",
+        "Basics of CS"
+      ],
+      "description": "A large fresher hiring program across support, QA, operations, and engineering tracks.",
+      "allowedBranches": [
+        "Computer Science and Engineering",
+        "Information Technology",
+        "Electronics and Communication Engineering",
+        "Electrical and Electronics Engineering"
+      ],
+      "createdAt": "2026-04-03T09:00:00.000Z"
+    },
+    {
+      "id": "infra-tech",
+      "company": "Infra Tech",
+      "role": "Network Engineer",
+      "category": "Core",
+      "type": "Full Time",
+      "mode": "Onsite",
+      "location": "Chennai",
+      "date": "2026-04-30",
+      "driveDate": "2026-04-22",
+      "slots": 14,
+      "package": "8 LPA",
+      "eligibility": 7.5,
+      "maxBacklogs": 0,
+      "bond": "No bond",
+      "rounds": "Technical Test, Ops Round, HR",
+      "skills": [
+        "Networks",
+        "Linux",
+        "Cloud",
+        "Security"
+      ],
+      "description": "Design and support enterprise-grade network infrastructure, observability, and cloud systems.",
+      "allowedBranches": [
+        "Computer Science and Engineering",
+        "Information Technology",
+        "Electronics and Communication Engineering",
+        "Electrical and Electronics Engineering"
+      ],
+      "createdAt": "2026-04-04T09:00:00.000Z"
+    },
+    {
+      "id": "robo-corp",
+      "company": "Robo Corp",
+      "role": "AI Intern + PPO",
+      "category": "Dream",
+      "type": "Internship",
+      "mode": "Hybrid",
+      "location": "Pune",
+      "date": "2026-04-06",
+      "driveDate": "2026-04-11",
+      "slots": 8,
+      "package": "14 LPA PPO",
+      "eligibility": 8,
+      "maxBacklogs": 0,
+      "bond": "No bond",
+      "rounds": "Portfolio Review, Technical, Research Discussion",
+      "skills": [
+        "Computer Vision",
+        "PyTorch",
+        "Robotics",
+        "Git"
+      ],
+      "description": "Contribute to robotics software, computer vision workflows, and model evaluation with a PPO track.",
+      "allowedBranches": [
+        "Computer Science and Engineering",
+        "Information Technology",
+        "Electronics and Communication Engineering"
+      ],
+      "createdAt": "2026-04-01T09:00:00.000Z"
+    },
+    {
+      "id": "fintech-pro",
+      "company": "FinTech Pro",
+      "role": "Business Analyst",
+      "category": "Core",
+      "type": "Full Time",
+      "mode": "Hybrid",
+      "location": "Bengaluru",
+      "date": "2026-04-22",
+      "driveDate": "2026-04-14",
+      "slots": 20,
+      "package": "9.5 LPA",
+      "eligibility": 7,
+      "maxBacklogs": 0,
+      "bond": "No bond",
+      "rounds": "Aptitude, Case Study, HR",
+      "skills": [
+        "Excel",
+        "SQL",
+        "Analytics",
+        "Communication"
+      ],
+      "description": "Support data-backed product decisions in lending, payments, and fintech operations.",
+      "allowedBranches": [
+        "Computer Science and Engineering",
+        "Information Technology",
+        "Electronics and Communication Engineering",
+        "Electrical and Electronics Engineering"
+      ],
+      "createdAt": "2026-04-02T09:00:00.000Z"
+    },
+    {
+      "id": "alpha-systems",
+      "company": "Alpha Systems",
+      "role": "Quality Engineering Analyst",
+      "category": "Mass",
+      "type": "Full Time",
+      "mode": "Hybrid",
+      "location": "Noida",
+      "date": "2026-04-28",
+      "driveDate": "2026-04-19",
+      "slots": 42,
+      "package": "5.2 LPA",
+      "eligibility": 6,
+      "maxBacklogs": 1,
+      "bond": "18 months",
+      "rounds": "Test, QA Round, HR",
+      "skills": [
+        "Testing",
+        "Automation Basics",
+        "API Validation"
+      ],
+      "description": "Test enterprise applications with a focus on reliability, automation, and release quality.",
+      "allowedBranches": [
+        "Computer Science and Engineering",
+        "Information Technology",
+        "Electronics and Communication Engineering",
+        "Electrical and Electronics Engineering"
+      ],
+      "createdAt": "2026-04-03T09:00:00.000Z"
+    }
+  ],
+  "offCampusJobs": [
+    {
+      "id": "google-se",
+      "company": "Google",
+      "role": "Software Engineer Intern",
+      "location": "Bengaluru",
+      "mode": "Onsite",
+      "compensation": "Market competitive",
+      "applyBy": "2026-04-30",
+      "skills": [
+        "DSA",
+        "Algorithms",
+        "C++ / Java / Python"
+      ],
+      "link": "https://careers.google.com/",
+      "description": "Work with platform teams on high-scale systems, internal developer tooling, and reliability improvements."
+    },
+    {
+      "id": "microsoft-cloud",
+      "company": "Microsoft",
+      "role": "Cloud Support Associate",
+      "location": "Hyderabad",
+      "mode": "Hybrid",
+      "compensation": "8-10 LPA",
+      "applyBy": "2026-04-25",
+      "skills": [
+        "Azure",
+        "Troubleshooting",
+        "Networking"
+      ],
+      "link": "https://careers.microsoft.com/",
+      "description": "Help enterprise customers operate Azure workloads with strong troubleshooting and communication skills."
+    },
+    {
+      "id": "amazon-sde",
+      "company": "Amazon",
+      "role": "SDE Intern",
+      "location": "Chennai",
+      "mode": "Onsite",
+      "compensation": "Intern stipend + PPO",
+      "applyBy": "2026-04-28",
+      "skills": [
+        "Java",
+        "Problem Solving",
+        "Systems Thinking"
+      ],
+      "link": "https://amazon.jobs/",
+      "description": "Build scalable services and internal tooling with strong coding fundamentals and bias for action."
+    },
+    {
+      "id": "tcs-nqt",
+      "company": "TCS NQT",
+      "role": "National Qualifier Trainee",
+      "location": "PAN India",
+      "mode": "Onsite",
+      "compensation": "3.5-7 LPA",
+      "applyBy": "2026-05-05",
+      "skills": [
+        "Aptitude",
+        "Coding",
+        "Communication"
+      ],
+      "link": "https://www.tcs.com/careers",
+      "description": "Entry-level hiring route with aptitude, coding, and communication rounds for large-scale fresher intake."
+    }
+  ],
+  "notifications": [
+    {
+      "id": "1775401326416-106a2c",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Application status updated",
+      "message": "FinTech Pro moved to Rejected.",
+      "createdAt": "2026-04-05T15:02:06.416Z",
+      "read": true,
+      "type": "application"
+    },
+    {
+      "id": "1775401326203-8df14d",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Application status updated",
+      "message": "FinTech Pro moved to Rejected.",
+      "createdAt": "2026-04-05T15:02:06.203Z",
+      "read": true,
+      "type": "application"
+    },
+    {
+      "id": "1775401326044-e4ae0e",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Application status updated",
+      "message": "FinTech Pro moved to Rejected.",
+      "createdAt": "2026-04-05T15:02:06.044Z",
+      "read": true,
+      "type": "application"
+    },
+    {
+      "id": "1775401325856-936a84",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Application status updated",
+      "message": "FinTech Pro moved to Rejected.",
+      "createdAt": "2026-04-05T15:02:05.856Z",
+      "read": true,
+      "type": "application"
+    },
+    {
+      "id": "1775401325680-4b57e8",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Application status updated",
+      "message": "FinTech Pro moved to Rejected.",
+      "createdAt": "2026-04-05T15:02:05.680Z",
+      "read": true,
+      "type": "application"
+    },
+    {
+      "id": "1775401325505-a5a27e",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Application status updated",
+      "message": "FinTech Pro moved to Rejected.",
+      "createdAt": "2026-04-05T15:02:05.505Z",
+      "read": true,
+      "type": "application"
+    },
+    {
+      "id": "1775401325315-f3a4b8",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Application status updated",
+      "message": "FinTech Pro moved to Rejected.",
+      "createdAt": "2026-04-05T15:02:05.315Z",
+      "read": true,
+      "type": "application"
+    },
+    {
+      "id": "1775401325125-5fc71d",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Application status updated",
+      "message": "FinTech Pro moved to Rejected.",
+      "createdAt": "2026-04-05T15:02:05.125Z",
+      "read": true,
+      "type": "application"
+    },
+    {
+      "id": "1775401324935-86e155",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Application status updated",
+      "message": "FinTech Pro moved to Rejected.",
+      "createdAt": "2026-04-05T15:02:04.935Z",
+      "read": true,
+      "type": "application"
+    },
+    {
+      "id": "1775401324228-29ce77",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Application status updated",
+      "message": "FinTech Pro moved to Rejected.",
+      "createdAt": "2026-04-05T15:02:04.228Z",
+      "read": true,
+      "type": "application"
+    },
+    {
+      "id": "1775401322883-3b336f",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Application status updated",
+      "message": "FinTech Pro moved to Rejected.",
+      "createdAt": "2026-04-05T15:02:02.883Z",
+      "read": true,
+      "type": "application"
+    },
+    {
+      "id": "1775401321731-c9df6d",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Application status updated",
+      "message": "FinTech Pro moved to Rejected.",
+      "createdAt": "2026-04-05T15:02:01.731Z",
+      "read": true,
+      "type": "application"
+    },
+    {
+      "id": "1775401320656-1015a9",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Application status updated",
+      "message": "FinTech Pro moved to Rejected.",
+      "createdAt": "2026-04-05T15:02:00.656Z",
+      "read": true,
+      "type": "application"
+    },
+    {
+      "id": "1775400907684-724d69",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Application status updated",
+      "message": "FinTech Pro moved to Rejected.",
+      "createdAt": "2026-04-05T14:55:07.684Z",
+      "read": true,
+      "type": "application"
+    },
+    {
+      "id": "1775400906949-ebdc9e",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Application status updated",
+      "message": "FinTech Pro moved to Rejected.",
+      "createdAt": "2026-04-05T14:55:06.949Z",
+      "read": true,
+      "type": "application"
+    },
+    {
+      "id": "1775400904640-170fbb",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Application status updated",
+      "message": "FinTech Pro moved to Rejected.",
+      "createdAt": "2026-04-05T14:55:04.640Z",
+      "read": true,
+      "type": "application"
+    },
+    {
+      "id": "1775400904410-b3c7ef",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Application status updated",
+      "message": "FinTech Pro moved to Rejected.",
+      "createdAt": "2026-04-05T14:55:04.410Z",
+      "read": true,
+      "type": "application"
+    },
+    {
+      "id": "1775400904234-0e62d5",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Application status updated",
+      "message": "FinTech Pro moved to Rejected.",
+      "createdAt": "2026-04-05T14:55:04.234Z",
+      "read": true,
+      "type": "application"
+    },
+    {
+      "id": "1775400904030-72f89e",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Application status updated",
+      "message": "FinTech Pro moved to Rejected.",
+      "createdAt": "2026-04-05T14:55:04.030Z",
+      "read": true,
+      "type": "application"
+    },
+    {
+      "id": "1775400903600-d3ec2c",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Application status updated",
+      "message": "FinTech Pro moved to Rejected.",
+      "createdAt": "2026-04-05T14:55:03.600Z",
+      "read": true,
+      "type": "application"
+    },
+    {
+      "id": "1775400902738-b95e78",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Application status updated",
+      "message": "FinTech Pro moved to Rejected.",
+      "createdAt": "2026-04-05T14:55:02.738Z",
+      "read": true,
+      "type": "application"
+    },
+    {
+      "id": "1775400902090-4705cf",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Application status updated",
+      "message": "FinTech Pro moved to Rejected.",
+      "createdAt": "2026-04-05T14:55:02.090Z",
+      "read": true,
+      "type": "application"
+    },
+    {
+      "id": "1775400900736-bd07b8",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Application status updated",
+      "message": "FinTech Pro moved to Rejected.",
+      "createdAt": "2026-04-05T14:55:00.736Z",
+      "read": true,
+      "type": "application"
+    },
+    {
+      "id": "1775400899686-413cec",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Application status updated",
+      "message": "FinTech Pro moved to Rejected.",
+      "createdAt": "2026-04-05T14:54:59.686Z",
+      "read": true,
+      "type": "application"
+    },
+    {
+      "id": "1775400898734-de5abd",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Application status updated",
+      "message": "FinTech Pro moved to Rejected.",
+      "createdAt": "2026-04-05T14:54:58.734Z",
+      "read": true,
+      "type": "application"
+    },
+    {
+      "id": "1775400897471-ff8c58",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Application status updated",
+      "message": "FinTech Pro moved to Offer.",
+      "createdAt": "2026-04-05T14:54:57.471Z",
+      "read": true,
+      "type": "application"
+    },
+    {
+      "id": "1775400883545-b87830",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Resume parsed successfully",
+      "message": "Skills, CGPA, and project highlights were extracted and match scores were refreshed.",
+      "createdAt": "2026-04-05T14:54:43.545Z",
+      "read": true,
+      "type": "resume"
+    },
+    {
+      "id": "seed-dream-company",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "New Dream company added",
+      "message": "Robo Corp launched an AI Intern + PPO drive. Match score updated from your resume profile.",
+      "createdAt": "2026-04-05T08:00:00.000Z",
+      "read": true,
+      "type": "drive"
+    },
+    {
+      "id": "seed-deadline-alert",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Deadline in 24 hrs",
+      "message": "Robo Corp closes applications on 06 Apr 2026. Apply now if you want to be considered.",
+      "createdAt": "2026-04-05T09:00:00.000Z",
+      "read": true,
+      "type": "deadline"
+    }
+  ]
+}
