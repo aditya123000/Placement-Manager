@@ -7,7 +7,9 @@ import DashboardSection from "../features/dashboard/DashboardSection";
 import DrivesSection from "../features/drives/DrivesSection";
 import NotificationsPanel from "../features/notifications/NotificationsPanel";
 import OffCampusSection from "../features/offCampus/OffCampusSection";
+import OperationsSection from "../features/operations/OperationsSection";
 import PreparationSection from "../features/preparation/PreparationSection";
+import { getNavItemsForRole } from "../features/placement/data";
 import PolicySection from "../features/policy/PolicySection";
 import ProfileSection from "../features/profile/ProfileSection";
 import ResourcesSection from "../features/resources/ResourcesSection";
@@ -30,6 +32,23 @@ export default function App() {
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [resumeFile, setResumeFile] = useState(null);
+
+  const isCoordinator = currentUser?.role === "coordinator";
+  const navItems = useMemo(() => getNavItemsForRole(currentUser?.role), [currentUser?.role]);
+  const drives = useMemo(
+    () =>
+      (isCoordinator ? currentUser?.management?.drives : currentUser?.drives ?? []).map((drive) => ({
+        ...drive,
+        eligibilityDetail: drive.eligibility,
+        status: drive.applicationStatus === "Not Applied" ? "Not Applied" : "Applied",
+      })),
+    [currentUser, isCoordinator],
+  );
+
+  const applications = useMemo(() => currentUser?.myApplications ?? [], [currentUser]);
+  const notifications = useMemo(() => currentUser?.notifications ?? [], [currentUser]);
+  const calendarEvents = useMemo(() => currentUser?.calendarEvents ?? [], [currentUser]);
+  const unreadNotifications = notifications.filter((item) => !item.read).length;
 
   const applyUserPayload = (user) => {
     setCurrentUser(user);
@@ -89,20 +108,11 @@ export default function App() {
     return () => stream.close();
   }, [currentUser?.id]);
 
-  const drives = useMemo(
-    () =>
-      (currentUser?.drives ?? []).map((drive) => ({
-        ...drive,
-        eligibilityDetail: drive.eligibility,
-        status: drive.applicationStatus === "Not Applied" ? "Not Applied" : "Applied",
-      })),
-    [currentUser],
-  );
-
-  const applications = useMemo(() => currentUser?.myApplications ?? [], [currentUser]);
-  const notifications = useMemo(() => currentUser?.notifications ?? [], [currentUser]);
-  const calendarEvents = useMemo(() => currentUser?.calendarEvents ?? [], [currentUser]);
-  const unreadNotifications = notifications.filter((item) => !item.read).length;
+  useEffect(() => {
+    if (!navItems.some((item) => item.id === activeSection)) {
+      setActiveSection("dashboard");
+    }
+  }, [activeSection, navItems]);
 
   const syncUser = async (requester) => {
     if (!currentUser) {
@@ -188,6 +198,56 @@ export default function App() {
     );
   };
 
+  const refreshCoordinatorOverview = async () => {
+    if (!currentUser || !isCoordinator) {
+      return;
+    }
+
+    const { user } = await api.getManagementOverview(currentUser.id);
+    applyUserPayload(user);
+  };
+
+  const handleToggleStudentPlacement = async (student) => {
+    if (!currentUser || !isCoordinator) {
+      return;
+    }
+
+    await api.updateStudentPlacementStatus(currentUser.id, student.id, {
+      isPlaced: !student.isPlaced,
+      placedCategory: student.isPlaced ? null : "Core",
+      currentOffer: student.isPlaced
+        ? null
+        : {
+            company: "Campus Offer",
+            role: "Graduate Trainee",
+            ctc: "6 LPA",
+            joining: new Date().toISOString().slice(0, 10),
+          },
+    });
+    await refreshCoordinatorOverview();
+    setBannerMessage(`Updated placement status for ${student.name}.`);
+  };
+
+  const handleCreateDrive = async (drive) => {
+    if (!currentUser || !isCoordinator) {
+      return;
+    }
+
+    await api.createDrive(currentUser.id, drive);
+    await refreshCoordinatorOverview();
+    setBannerMessage(`Created drive for ${drive.company}.`);
+  };
+
+  const handleUpdateDrive = async (driveId, drive) => {
+    if (!currentUser || !isCoordinator) {
+      return;
+    }
+
+    await api.updateDrive(currentUser.id, driveId, drive);
+    await refreshCoordinatorOverview();
+    setBannerMessage("Drive updated successfully.");
+  };
+
   const handleDownloadPolicy = () => {
     const content = [
       "Privacy Policy - Placement Manager",
@@ -236,6 +296,7 @@ export default function App() {
     <>
       <div className="app-shell">
         <Sidebar
+          navItems={navItems}
           activeSection={activeSection}
           isMobileOpen={isMobileOpen}
           onSectionChange={(section) => {
@@ -248,22 +309,59 @@ export default function App() {
         <main className="main-shell">
           <Header
             userName={currentUser.name}
-            summary={`${currentUser.branch || "Student"} | ${currentUser.academicCGPA || 0} CGPA | ${applications.length} tracked applications`}
+            summary={
+              isCoordinator
+                ? `${currentUser.management?.metrics?.totalStudents || 0} students | ${currentUser.management?.metrics?.activeDrives || 0} active drives | ${currentUser.management?.metrics?.applicationsTracked || 0} tracked applications`
+                : `${currentUser.branch || "Student"} | ${currentUser.academicCGPA || 0} CGPA | ${applications.length} tracked applications`
+            }
             unreadCount={unreadNotifications}
             onNotificationsClick={() => setIsNotificationsOpen(true)}
             onMenuToggle={() => setIsMobileOpen((current) => !current)}
+            roleLabel={isCoordinator ? "Placement Cell Console" : "Student Dashboard"}
           />
 
           {bannerMessage ? <div className="banner">{bannerMessage}</div> : null}
           {isLoading ? <div className="banner">Syncing placement data...</div> : null}
 
-          {activeSection === "dashboard" ? (
+          {activeSection === "dashboard" && !isCoordinator ? (
             <DashboardSection
               currentUser={currentUser}
               drives={drives}
               onApplyClick={setSelectedDrive}
               onUndoApply={() => {}}
             />
+          ) : null}
+
+          {activeSection === "dashboard" && isCoordinator ? (
+            <section className="panel-stack">
+              <div className="metrics-grid operations-metrics-grid">
+                <article className="metric-card accent-green">
+                  <span>Total Students</span>
+                  <strong>{currentUser.management?.metrics?.totalStudents || 0}</strong>
+                </article>
+                <article className="metric-card accent-blue">
+                  <span>Placement Rate</span>
+                  <strong>{currentUser.management?.metrics?.placementRate || 0}%</strong>
+                </article>
+                <article className="metric-card accent-amber">
+                  <span>Active Drives</span>
+                  <strong>{currentUser.management?.metrics?.activeDrives || 0}</strong>
+                </article>
+                <article className="metric-card accent-slate">
+                  <span>Tracked Applications</span>
+                  <strong>{currentUser.management?.metrics?.applicationsTracked || 0}</strong>
+                </article>
+              </div>
+
+              <article className="content-card">
+                <div className="section-head">
+                  <div>
+                    <h2>Coordinator Snapshot</h2>
+                    <p>Use Placement Operations for student outcomes, drive creation, and audit history.</p>
+                  </div>
+                </div>
+              </article>
+            </section>
           ) : null}
 
           {activeSection === "profile" ? (
@@ -273,6 +371,15 @@ export default function App() {
               onUploadResume={handleUploadResume}
               resumeFile={resumeFile}
               onSaveProfile={handleSaveProfile}
+            />
+          ) : null}
+
+          {activeSection === "operations" && isCoordinator ? (
+            <OperationsSection
+              management={currentUser.management}
+              onToggleStudentPlacement={handleToggleStudentPlacement}
+              onCreateDrive={handleCreateDrive}
+              onUpdateDrive={handleUpdateDrive}
             />
           ) : null}
 

@@ -17,6 +17,7 @@ const seedState = () => ({
     {
       ...defaultStudent,
       id: defaultStudent.roll,
+      role: "student",
       wishlist: ["global-titans", "robo-corp"],
       resumeData: {
         fileName: defaultStudent.resumeVersion,
@@ -29,6 +30,58 @@ const seedState = () => ({
         ],
         lastParsedAt: "2026-04-04T12:00:00.000Z",
       },
+    },
+    {
+      id: "TPC-COORD-01",
+      role: "coordinator",
+      name: "Placement Coordinator",
+      email: "coordinator@college.edu",
+      dob: "1990-07-14",
+      roll: "TPC-COORD-01",
+      password: "coord",
+      phone: "+91 90000 11111",
+      alternatePhone: "",
+      gender: "",
+      address: "Training and Placement Office",
+      city: "Bengaluru",
+      state: "Karnataka",
+      branch: "Placement Office",
+      specialization: "Campus Operations",
+      year: 0,
+      section: "",
+      semester: 0,
+      academicCGPA: 0,
+      backlogs: 0,
+      tenth: 0,
+      twelfth: 0,
+      diploma: 0,
+      resumeVersion: "",
+      portfolioUrl: "",
+      linkedinUrl: "",
+      githubUrl: "",
+      leetcodeUrl: "",
+      preferredLocations: "",
+      expectedCtc: "",
+      willingToRelocate: true,
+      internshipExperience: "",
+      certifications: "",
+      achievements: "",
+      technicalSkills: "",
+      softSkills: "",
+      placementCoordinator: "",
+      mentorName: "",
+      attendance: 0,
+      noticeBoardOptIn: true,
+      isPlaced: false,
+      placedCategory: null,
+      jobsOffered: 0,
+      dreamApplicationsLeft: 0,
+      profileCompletion: 100,
+      profileHealth: "Operational",
+      currentOffer: null,
+      wishlist: [],
+      resumeData: null,
+      myApplications: [],
     },
   ],
   drives: driveSeeds.map((drive, index) => ({
@@ -62,6 +115,18 @@ const seedState = () => ({
       type: "deadline",
     },
   ],
+  audits: [
+    {
+      id: "seed-audit-01",
+      actorId: "TPC-COORD-01",
+      actorName: "Placement Coordinator",
+      action: "seeded_system",
+      targetType: "system",
+      targetId: "platform",
+      detail: "Initialized placement cycle baseline data.",
+      createdAt: "2026-04-05T07:00:00.000Z",
+    },
+  ],
 });
 
 const loadState = () => {
@@ -72,7 +137,72 @@ const loadState = () => {
     return seeded;
   }
 
-  return JSON.parse(fs.readFileSync(databasePath, "utf8"));
+  const loaded = JSON.parse(fs.readFileSync(databasePath, "utf8"));
+  loaded.users = (loaded.users || []).map((user) => ({
+    role: "student",
+    wishlist: [],
+    myApplications: [],
+    ...user,
+  }));
+  loaded.audits = loaded.audits || [];
+
+  if (!loaded.users.some((user) => user.role === "coordinator")) {
+    loaded.users.push({
+      id: "TPC-COORD-01",
+      role: "coordinator",
+      name: "Placement Coordinator",
+      email: "coordinator@college.edu",
+      dob: "1990-07-14",
+      roll: "TPC-COORD-01",
+      password: "coord",
+      phone: "+91 90000 11111",
+      alternatePhone: "",
+      gender: "",
+      address: "Training and Placement Office",
+      city: "Bengaluru",
+      state: "Karnataka",
+      branch: "Placement Office",
+      specialization: "Campus Operations",
+      year: 0,
+      section: "",
+      semester: 0,
+      academicCGPA: 0,
+      backlogs: 0,
+      tenth: 0,
+      twelfth: 0,
+      diploma: 0,
+      resumeVersion: "",
+      portfolioUrl: "",
+      linkedinUrl: "",
+      githubUrl: "",
+      leetcodeUrl: "",
+      preferredLocations: "",
+      expectedCtc: "",
+      willingToRelocate: true,
+      internshipExperience: "",
+      certifications: "",
+      achievements: "",
+      technicalSkills: "",
+      softSkills: "",
+      placementCoordinator: "",
+      mentorName: "",
+      attendance: 0,
+      noticeBoardOptIn: true,
+      isPlaced: false,
+      placedCategory: null,
+      jobsOffered: 0,
+      dreamApplicationsLeft: 0,
+      profileCompletion: 100,
+      profileHealth: "Operational",
+      currentOffer: null,
+      wishlist: [],
+      resumeData: null,
+      myApplications: [],
+    });
+  }
+
+  fs.writeFileSync(databasePath, JSON.stringify(loaded, null, 2));
+  return loaded;
 };
 
 let state = loadState();

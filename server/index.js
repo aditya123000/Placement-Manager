@@ -14,11 +14,51 @@ const app = express();
 const upload = multer({ storage: multer.memoryStorage() });
 const port = 4000;
 const clients = new Set();
+const applicationStages = ["Applied", "Shortlisted", "OA", "Interview", "Offer", "Rejected"];
 
 app.use(cors());
 app.use(express.json());
 
 const enrichUser = (user, state) => {
+  if (user.role === "coordinator") {
+    const students = state.users.filter((item) => item.role !== "coordinator");
+    const applications = students.flatMap((item) => item.myApplications || []);
+    const placed = students.filter((item) => item.isPlaced).length;
+    const openDrives = state.drives.filter((drive) => new Date(drive.date) >= new Date()).length;
+
+    return {
+      ...user,
+      management: {
+        metrics: {
+          totalStudents: students.length,
+          placedStudents: placed,
+          placementRate: students.length ? Math.round((placed / students.length) * 100) : 0,
+          activeDrives: openDrives,
+          applicationsTracked: applications.length,
+        },
+        students: students.map((item) => ({
+          id: item.id,
+          name: item.name,
+          email: item.email,
+          roll: item.roll,
+          branch: item.branch,
+          academicCGPA: item.academicCGPA,
+          backlogs: item.backlogs,
+          profileCompletion: item.profileCompletion,
+          profileHealth: item.profileHealth,
+          jobsOffered: item.jobsOffered,
+          isPlaced: item.isPlaced,
+          placedCategory: item.placedCategory,
+          currentOffer: item.currentOffer,
+          applicationsCount: (item.myApplications || []).length,
+        })),
+        drives: state.drives,
+        audits: (state.audits || []).slice(0, 120),
+      },
+      notifications: state.notifications.filter((item) => item.userId === user.id),
+    };
+  }
+
   const drives = state.drives.map((drive) => ({
     ...drive,
     applicationStatus:
@@ -36,6 +76,32 @@ const enrichUser = (user, state) => {
     offCampusJobs: state.offCampusJobs,
     notifications: state.notifications.filter((item) => item.userId === user.id),
   };
+};
+
+const ensureCoordinator = (state, userId) => {
+  const actor = state.users.find((item) => item.id === userId);
+  if (!actor || actor.role !== "coordinator") {
+    throw new Error("Coordinator access required");
+  }
+
+  return actor;
+};
+
+const addAudit = (state, actor, action, targetType, targetId, detail) => {
+  if (!state.audits) {
+    state.audits = [];
+  }
+
+  state.audits.unshift({
+    id: `${Date.now()}-${Math.random().toString(16).slice(2, 8)}`,
+    actorId: actor?.id || "system",
+    actorName: actor?.name || "System",
+    action,
+    targetType,
+    targetId,
+    detail,
+    createdAt: new Date().toISOString(),
+  });
 };
 
 const broadcast = (event, payload) => {
@@ -90,7 +156,8 @@ app.post("/api/auth/login", (request, response) => {
 
 app.post("/api/auth/register", (request, response) => {
   try {
-    const { name, email, dob, roll, password } = request.body;
+    const { name, email, dob, roll, password, role } = request.body;
+    const accountRole = role === "coordinator" ? "coordinator" : "student";
 
     if (!name || !email || !dob || !roll || !password) {
       response.status(400).json({ message: "Missing required registration fields" });
@@ -104,6 +171,7 @@ app.post("/api/auth/register", (request, response) => {
 
       current.users.push({
         id: roll,
+        role: accountRole,
         name,
         email,
         dob,
@@ -153,6 +221,8 @@ app.post("/api/auth/register", (request, response) => {
         resumeData: null,
         myApplications: [],
       });
+      const actor = { id: roll, name };
+      addAudit(current, actor, "registered", "user", roll, `Registered a new ${accountRole} account.`);
       return current;
     });
 
@@ -183,6 +253,7 @@ app.patch("/api/profile/:userId", (request, response) => {
     }
 
     Object.assign(user, request.body);
+    addAudit(current, user, "profile_updated", "user", user.id, "Updated profile fields.");
     return current;
   });
 
@@ -213,6 +284,7 @@ app.post("/api/resume/:userId", upload.single("resume"), async (request, respons
         "Skills, CGPA, and project highlights were extracted and match scores were refreshed.",
         "resume",
       );
+      addAudit(current, user, "resume_uploaded", "user", user.id, `Uploaded ${parsedResume.fileName}.`);
       return current;
     });
 
@@ -259,6 +331,7 @@ app.post("/api/drives/:driveId/apply", (request, response) => {
       `${drive.company} application added to your tracker.`,
       "application",
     );
+    addAudit(current, user, "applied_drive", "drive", drive.id, `Applied to ${drive.company}.`);
     return current;
   });
 
@@ -267,7 +340,6 @@ app.post("/api/drives/:driveId/apply", (request, response) => {
 });
 
 app.patch("/api/applications/:applicationId/status", (request, response) => {
-  const stages = ["Applied", "Shortlisted", "OA", "Interview", "Offer", "Rejected"];
   const state = updateState((current) => {
     const user = current.users.find((item) => item.id === request.body.userId);
     if (!user) {
@@ -279,10 +351,10 @@ app.patch("/api/applications/:applicationId/status", (request, response) => {
       throw new Error("Application not found");
     }
 
-    const currentIndex = stages.indexOf(application.status);
-    const nextIndex = Math.min(currentIndex + 1, stages.length - 1);
-    application.status = stages[nextIndex];
-    application.stage = stages[nextIndex];
+    const currentIndex = applicationStages.indexOf(application.status);
+    const nextIndex = Math.min(currentIndex + 1, applicationStages.length - 1);
+    application.status = applicationStages[nextIndex];
+    application.stage = applicationStages[nextIndex];
     application.nextStepDate = new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
 
     createNotification(
@@ -292,6 +364,7 @@ app.patch("/api/applications/:applicationId/status", (request, response) => {
       `${application.company} moved to ${application.status}.`,
       "application",
     );
+    addAudit(current, user, "application_advanced", "application", application.id, `${application.company} moved to ${application.status}.`);
     return current;
   });
 
@@ -321,6 +394,7 @@ app.post("/api/drives/:driveId/wishlist", (request, response) => {
       );
     }
     user.wishlist = [...wishlist];
+    addAudit(current, user, "wishlist_toggled", "drive", drive.id, `${wishlist.has(drive.id) ? "Saved" : "Removed"} ${drive.company}.`);
     return current;
   });
 
@@ -358,6 +432,203 @@ app.get("/api/calendar/:userId", (request, response) => {
   }
 
   response.json({ events: buildCalendarEvents(user, state.drives) });
+});
+
+app.get("/api/management/overview/:userId", (request, response) => {
+  try {
+    const state = getState();
+    const coordinator = ensureCoordinator(state, request.params.userId);
+    response.json({ user: enrichUser(coordinator, state) });
+  } catch (error) {
+    response.status(403).json({ message: error.message });
+  }
+});
+
+app.get("/api/management/students/:userId", (request, response) => {
+  try {
+    const state = getState();
+    ensureCoordinator(state, request.params.userId);
+    const students = state.users
+      .filter((item) => item.role !== "coordinator")
+      .map((item) => ({
+        id: item.id,
+        name: item.name,
+        email: item.email,
+        roll: item.roll,
+        branch: item.branch,
+        academicCGPA: item.academicCGPA,
+        backlogs: item.backlogs,
+        profileCompletion: item.profileCompletion,
+        profileHealth: item.profileHealth,
+        jobsOffered: item.jobsOffered,
+        isPlaced: item.isPlaced,
+        placedCategory: item.placedCategory,
+        currentOffer: item.currentOffer,
+        applicationsCount: (item.myApplications || []).length,
+      }));
+    response.json({ students });
+  } catch (error) {
+    response.status(403).json({ message: error.message });
+  }
+});
+
+app.patch("/api/management/students/:studentId/status", (request, response) => {
+  try {
+    const state = updateState((current) => {
+      const actor = ensureCoordinator(current, request.body.userId);
+      const student = current.users.find(
+        (item) => item.id === request.params.studentId && item.role !== "coordinator",
+      );
+
+      if (!student) {
+        throw new Error("Student not found");
+      }
+
+      if (typeof request.body.isPlaced === "boolean") {
+        student.isPlaced = request.body.isPlaced;
+      }
+
+      if (request.body.placedCategory !== undefined) {
+        student.placedCategory = request.body.placedCategory;
+      }
+
+      if (request.body.currentOffer !== undefined) {
+        student.currentOffer = request.body.currentOffer;
+      }
+
+      addAudit(
+        current,
+        actor,
+        "student_status_updated",
+        "user",
+        student.id,
+        `Updated placement status for ${student.name}.`,
+      );
+
+      return current;
+    });
+
+    const students = state.users.filter((item) => item.role !== "coordinator");
+    response.json({
+      students: students.map((item) => ({
+        id: item.id,
+        name: item.name,
+        email: item.email,
+        roll: item.roll,
+        branch: item.branch,
+        academicCGPA: item.academicCGPA,
+        backlogs: item.backlogs,
+        profileCompletion: item.profileCompletion,
+        profileHealth: item.profileHealth,
+        jobsOffered: item.jobsOffered,
+        isPlaced: item.isPlaced,
+        placedCategory: item.placedCategory,
+        currentOffer: item.currentOffer,
+        applicationsCount: (item.myApplications || []).length,
+      })),
+    });
+  } catch (error) {
+    response.status(400).json({ message: error.message });
+  }
+});
+
+app.post("/api/management/drives", (request, response) => {
+  try {
+    const state = updateState((current) => {
+      const actor = ensureCoordinator(current, request.body.userId);
+      const payload = request.body.drive || {};
+
+      const required = ["company", "role", "category", "package", "eligibility", "date", "driveDate"];
+      const missing = required.filter((key) => !payload[key]);
+      if (missing.length) {
+        throw new Error(`Missing required drive fields: ${missing.join(", ")}`);
+      }
+
+      const created = {
+        id:
+          payload.id ||
+          `${payload.company.toLowerCase().replace(/[^a-z0-9]+/g, "-")}-${Date.now().toString().slice(-6)}`,
+        company: payload.company,
+        role: payload.role,
+        category: payload.category,
+        type: payload.type || "Full Time",
+        mode: payload.mode || "Onsite",
+        location: payload.location || "TBD",
+        date: payload.date,
+        driveDate: payload.driveDate,
+        slots: Number(payload.slots || 0),
+        package: payload.package,
+        eligibility: Number(payload.eligibility || 0),
+        maxBacklogs: Number(payload.maxBacklogs || 0),
+        bond: payload.bond || "No bond",
+        rounds: payload.rounds || "Assessment, Interview",
+        skills: Array.isArray(payload.skills)
+          ? payload.skills
+          : String(payload.skills || "")
+              .split(",")
+              .map((item) => item.trim())
+              .filter(Boolean),
+        description: payload.description || "Campus hiring drive.",
+        allowedBranches: payload.allowedBranches || [],
+        createdAt: new Date().toISOString(),
+      };
+
+      current.drives.unshift(created);
+      addAudit(current, actor, "drive_created", "drive", created.id, `Created drive for ${created.company}.`);
+      return current;
+    });
+
+    response.status(201).json({ drives: state.drives });
+  } catch (error) {
+    response.status(400).json({ message: error.message });
+  }
+});
+
+app.patch("/api/management/drives/:driveId", (request, response) => {
+  try {
+    const state = updateState((current) => {
+      const actor = ensureCoordinator(current, request.body.userId);
+      const drive = current.drives.find((item) => item.id === request.params.driveId);
+      if (!drive) {
+        throw new Error("Drive not found");
+      }
+
+      const payload = request.body.drive || {};
+      Object.assign(drive, payload);
+      if (typeof payload.eligibility !== "undefined") {
+        drive.eligibility = Number(payload.eligibility);
+      }
+      if (typeof payload.maxBacklogs !== "undefined") {
+        drive.maxBacklogs = Number(payload.maxBacklogs);
+      }
+      if (typeof payload.slots !== "undefined") {
+        drive.slots = Number(payload.slots);
+      }
+      if (payload.skills && !Array.isArray(payload.skills)) {
+        drive.skills = String(payload.skills)
+          .split(",")
+          .map((item) => item.trim())
+          .filter(Boolean);
+      }
+
+      addAudit(current, actor, "drive_updated", "drive", drive.id, `Updated drive for ${drive.company}.`);
+      return current;
+    });
+
+    response.json({ drives: state.drives });
+  } catch (error) {
+    response.status(400).json({ message: error.message });
+  }
+});
+
+app.get("/api/management/audit/:userId", (request, response) => {
+  try {
+    const state = getState();
+    ensureCoordinator(state, request.params.userId);
+    response.json({ audits: state.audits || [] });
+  } catch (error) {
+    response.status(403).json({ message: error.message });
+  }
 });
 
 app.listen(port, () => {

@@ -63,7 +63,7 @@
           "package": "9.5 LPA",
           "location": "Bengaluru",
           "appliedOn": "2026-03-28",
-          "nextStepDate": "2026-04-18",
+          "nextStepDate": "2026-04-21",
           "recruiter": "Campus Hiring Team",
           "mode": "Hybrid",
           "roleDescription": "Support product and growth teams with analytics, stakeholder reporting, and operational problem solving.",
@@ -72,8 +72,8 @@
       ],
       "id": "CSE2025001",
       "wishlist": [
-        "global-titans",
-        "robo-corp"
+        "robo-corp",
+        "global-titans"
       ],
       "resumeData": {
         "fileName": "Resume_new.pdf",
@@ -95,6 +95,57 @@
         ],
         "lastParsedAt": "2026-04-05T14:54:43.544Z"
       }
+    },
+    {
+      "id": "12345678",
+      "name": "arnav",
+      "email": "arnav@gmail.com",
+      "dob": "2004-10-04",
+      "roll": "12345678",
+      "password": "arnav",
+      "phone": "",
+      "alternatePhone": "",
+      "gender": "",
+      "address": "",
+      "city": "",
+      "state": "",
+      "branch": "",
+      "specialization": "",
+      "year": 0,
+      "section": "",
+      "semester": 0,
+      "academicCGPA": 0,
+      "backlogs": 0,
+      "tenth": 0,
+      "twelfth": 0,
+      "diploma": 0,
+      "resumeVersion": "",
+      "portfolioUrl": "",
+      "linkedinUrl": "",
+      "githubUrl": "",
+      "leetcodeUrl": "",
+      "preferredLocations": "",
+      "expectedCtc": "",
+      "willingToRelocate": true,
+      "internshipExperience": "",
+      "certifications": "",
+      "achievements": "",
+      "technicalSkills": "",
+      "softSkills": "",
+      "placementCoordinator": "",
+      "mentorName": "",
+      "attendance": 0,
+      "noticeBoardOptIn": true,
+      "isPlaced": false,
+      "placedCategory": null,
+      "jobsOffered": 0,
+      "dreamApplicationsLeft": 2,
+      "profileCompletion": 20,
+      "profileHealth": "Needs completion",
+      "currentOffer": null,
+      "wishlist": [],
+      "resumeData": null,
+      "myApplications": []
     }
   ],
   "drives": [
@@ -380,13 +431,203 @@
   ],
   "notifications": [
     {
+      "id": "1776533795716-062278",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Drive saved to wishlist",
+      "message": "Tech Innovate is now bookmarked for later review.",
+      "createdAt": "2026-04-18T17:36:35.716Z",
+      "read": true,
+      "type": "wishlist"
+    },
+    {
+      "id": "1776533795391-68d417",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Drive saved to wishlist",
+      "message": "Tech Innovate is now bookmarked for later review.",
+      "createdAt": "2026-04-18T17:36:35.391Z",
+      "read": true,
+      "type": "wishlist"
+    },
+    {
+      "id": "1776533795047-1bdc33",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Drive saved to wishlist",
+      "message": "Tech Innovate is now bookmarked for later review.",
+      "createdAt": "2026-04-18T17:36:35.048Z",
+      "read": true,
+      "type": "wishlist"
+    },
+    {
+      "id": "1776533793971-a98fb8",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Drive saved to wishlist",
+      "message": "Tech Innovate is now bookmarked for later review.",
+      "createdAt": "2026-04-18T17:36:33.971Z",
+      "read": true,
+      "type": "wishlist"
+    },
+    {
+      "id": "1776533771124-6f55ae",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Application status updated",
+      "message": "FinTech Pro moved to Rejected.",
+      "createdAt": "2026-04-18T17:36:11.124Z",
+      "read": true,
+      "type": "application"
+    },
+    {
+      "id": "1776533770906-e4db22",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Application status updated",
+      "message": "FinTech Pro moved to Rejected.",
+      "createdAt": "2026-04-18T17:36:10.906Z",
+      "read": true,
+      "type": "application"
+    },
+    {
+      "id": "1776533770747-84d57b",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Application status updated",
+      "message": "FinTech Pro moved to Rejected.",
+      "createdAt": "2026-04-18T17:36:10.747Z",
+      "read": true,
+      "type": "application"
+    },
+    {
+      "id": "1776533770587-5b5258",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Application status updated",
+      "message": "FinTech Pro moved to Rejected.",
+      "createdAt": "2026-04-18T17:36:10.587Z",
+      "read": true,
+      "type": "application"
+    },
+    {
+      "id": "1776533770440-66ee7e",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Application status updated",
+      "message": "FinTech Pro moved to Rejected.",
+      "createdAt": "2026-04-18T17:36:10.440Z",
+      "read": true,
+      "type": "application"
+    },
+    {
+      "id": "1776533770263-52c66d",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Application status updated",
+      "message": "FinTech Pro moved to Rejected.",
+      "createdAt": "2026-04-18T17:36:10.263Z",
+      "read": true,
+      "type": "application"
+    },
+    {
+      "id": "1776533736357-625c3c",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Drive saved to wishlist",
+      "message": "Global Titans is now bookmarked for later review.",
+      "createdAt": "2026-04-18T17:35:36.357Z",
+      "read": true,
+      "type": "wishlist"
+    },
+    {
+      "id": "1776533065899-96c8f9",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Application status updated",
+      "message": "FinTech Pro moved to Rejected.",
+      "createdAt": "2026-04-18T17:24:25.899Z",
+      "read": true,
+      "type": "application"
+    },
+    {
+      "id": "1776533065676-829759",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Application status updated",
+      "message": "FinTech Pro moved to Rejected.",
+      "createdAt": "2026-04-18T17:24:25.676Z",
+      "read": true,
+      "type": "application"
+    },
+    {
+      "id": "1776533065506-8a9c87",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Application status updated",
+      "message": "FinTech Pro moved to Rejected.",
+      "createdAt": "2026-04-18T17:24:25.506Z",
+      "read": true,
+      "type": "application"
+    },
+    {
+      "id": "1776533065338-dad6b8",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Application status updated",
+      "message": "FinTech Pro moved to Rejected.",
+      "createdAt": "2026-04-18T17:24:25.338Z",
+      "read": true,
+      "type": "application"
+    },
+    {
+      "id": "1776533065178-f1dc9c",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Application status updated",
+      "message": "FinTech Pro moved to Rejected.",
+      "createdAt": "2026-04-18T17:24:25.178Z",
+      "read": true,
+      "type": "application"
+    },
+    {
+      "id": "1776533065009-4338f0",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Application status updated",
+      "message": "FinTech Pro moved to Rejected.",
+      "createdAt": "2026-04-18T17:24:25.009Z",
+      "read": true,
+      "type": "application"
+    },
+    {
+      "id": "1776533064843-a4a660",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Application status updated",
+      "message": "FinTech Pro moved to Rejected.",
+      "createdAt": "2026-04-18T17:24:24.843Z",
+      "read": true,
+      "type": "application"
+    },
+    {
+      "id": "1776533057635-c8e608",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Application status updated",
+      "message": "FinTech Pro moved to Rejected.",
+      "createdAt": "2026-04-18T17:24:17.635Z",
+      "read": true,
+      "type": "application"
+    },
+    {
       "id": "1776252988267-857ac6",
       "userId": "CSE2025001",
       "channel": "in-app,email",
       "title": "Application status updated",
       "message": "FinTech Pro moved to Rejected.",
       "createdAt": "2026-04-15T11:36:28.267Z",
-      "read": false,
+      "read": true,
       "type": "application"
     },
     {
@@ -396,7 +637,7 @@
       "title": "Application status updated",
       "message": "FinTech Pro moved to Rejected.",
       "createdAt": "2026-04-15T11:36:28.052Z",
-      "read": false,
+      "read": true,
       "type": "application"
     },
     {
@@ -406,7 +647,7 @@
       "title": "Application status updated",
       "message": "FinTech Pro moved to Rejected.",
       "createdAt": "2026-04-15T11:36:27.906Z",
-      "read": false,
+      "read": true,
       "type": "application"
     },
     {
@@ -416,7 +657,7 @@
       "title": "Application status updated",
       "message": "FinTech Pro moved to Rejected.",
       "createdAt": "2026-04-15T11:36:27.742Z",
-      "read": false,
+      "read": true,
       "type": "application"
     },
     {
@@ -426,7 +667,7 @@
       "title": "Application status updated",
       "message": "FinTech Pro moved to Rejected.",
       "createdAt": "2026-04-15T11:36:27.583Z",
-      "read": false,
+      "read": true,
       "type": "application"
     },
     {
@@ -436,7 +677,7 @@
       "title": "Application status updated",
       "message": "FinTech Pro moved to Rejected.",
       "createdAt": "2026-04-15T11:36:27.420Z",
-      "read": false,
+      "read": true,
       "type": "application"
     },
     {
@@ -446,7 +687,7 @@
       "title": "Application status updated",
       "message": "FinTech Pro moved to Rejected.",
       "createdAt": "2026-04-15T11:36:27.243Z",
-      "read": false,
+      "read": true,
       "type": "application"
     },
     {
@@ -456,7 +697,7 @@
       "title": "Application status updated",
       "message": "FinTech Pro moved to Rejected.",
       "createdAt": "2026-04-15T11:36:20.825Z",
-      "read": false,
+      "read": true,
       "type": "application"
     },
     {

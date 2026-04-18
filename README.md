@@ -5,6 +5,7 @@ Placement Manager is now a lightweight full-stack campus placement workflow plat
 ## Highlights
 
 - Student authentication with local persistence
+- Role-aware access for students and placement coordinators
 - Rich student profile with academic, contact, resume, skills, and readiness fields
 - On-campus drive management with eligibility checks and placement-rule enforcement
 - Application tracker with status, stages, recruiter info, and next-step dates
@@ -15,6 +16,7 @@ Placement Manager is now a lightweight full-stack campus placement workflow plat
 - Real-time in-app notifications through server-sent events
 - Wishlist / saved companies
 - Placement calendar for tests and interview schedules
+- Placement operations console with student status actions, drive creation, and audit trail
 - Placement preparation hub
 - Policy, privacy, and compliance sections
 - Resource center and visible project tech stack
@@ -60,20 +62,37 @@ server/
   placement.js
   store.js
   data/
+src/features/
+  operations/
+    components/
+
+## Demo Credentials
+
+- Student: `Demo Student` / `demo`
+- Coordinator: `Placement Coordinator` / `coord`
+
+## What Is Now Production-Grade
+
+- Role-based workspace flows with separate student and coordinator navigation
+- Coordinator operations for updating student placement status
+- Coordinator drive-creation workflow from UI to persistent backend
+- Persistent audit trail (`state.audits`) for traceability and handovers
+- Feature-first frontend modules with reusable operation subcomponents
+- Team-friendly conventions documented in `CONTRIBUTING.md`
 ```
 
 ## Production-Ready Upgrade Path
 
 This repo now includes a local development backend. To take it fully production-ready, the next logical additions are:
 
-1. Node.js/Express or NestJS backend with PostgreSQL or MongoDB
-2. Real authentication with JWT or session-based auth
-3. Role-based access for students, coordinators, recruiters, and admins
-4. Resume/document uploads with cloud object storage
-5. Email/SMS notifications for shortlist and interview updates
-6. Audit logs, exports, and reporting APIs
-7. Unit, integration, and end-to-end tests
-8. CI/CD pipeline and environment-based configuration
+1. Replace plaintext passwords with hashed credentials and token/session auth
+2. Move persistence from local JSON to PostgreSQL with migrations
+3. Add recruiter and admin roles with scoped permissions
+4. Add request validation and centralized API error middleware
+5. Add cloud object storage + antivirus scanning for document uploads
+6. Add automated tests: unit, integration, and end-to-end
+7. Add CI/CD checks (lint, test, build) and preview deployments
+8. Add observability stack (structured logs, tracing, health alerts)
 
 ## Getting Started
 

@@ -283,6 +283,18 @@ export const navItems = [
   { id: "policy", label: "Policy & Privacy", icon: "fa-book-open" },
 ];
 
+export const coordinatorNavItems = [
+  { id: "dashboard", label: "Overview", icon: "fa-chart-line" },
+  { id: "operations", label: "Placement Operations", icon: "fa-briefcase" },
+  { id: "analytics", label: "Institution Analytics", icon: "fa-chart-pie" },
+  { id: "calendar", label: "Cycle Calendar", icon: "fa-calendar-days" },
+  { id: "resources", label: "Knowledge Base", icon: "fa-life-ring" },
+  { id: "policy", label: "Policy & Privacy", icon: "fa-book-open" },
+];
+
+export const getNavItemsForRole = (role) =>
+  role === "coordinator" ? coordinatorNavItems : navItems;
+
 export const policySections = [
   {
     title: "Information We Collect",

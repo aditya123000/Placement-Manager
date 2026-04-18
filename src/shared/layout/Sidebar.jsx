@@ -1,6 +1,5 @@
-import { navItems } from "../../features/placement/data";
-
 export default function Sidebar({
+  navItems,
   activeSection,
   isMobileOpen,
   onSectionChange,

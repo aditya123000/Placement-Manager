@@ -4,11 +4,12 @@ export default function Header({
   onNotificationsClick,
   summary,
   unreadCount,
+  roleLabel,
 }) {
   return (
     <header className="topbar">
       <div>
-        <span className="eyebrow">Student Dashboard</span>
+        <span className="eyebrow">{roleLabel || "Student Dashboard"}</span>
         <h1>
           Welcome back, <strong>{userName}</strong>
         </h1>

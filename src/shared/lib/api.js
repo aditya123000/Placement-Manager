@@ -96,6 +96,27 @@ export const api = {
       body: JSON.stringify({ userId }),
     }),
   getCalendar: (userId) => request(`/calendar/${userId}`),
+  getManagementOverview: (userId) => request(`/management/overview/${userId}`),
+  getManagementStudents: (userId) => request(`/management/students/${userId}`),
+  updateStudentPlacementStatus: (userId, studentId, payload) =>
+    request(`/management/students/${studentId}/status`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ userId, ...payload }),
+    }),
+  createDrive: (userId, drive) =>
+    request("/management/drives", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ userId, drive }),
+    }),
+  updateDrive: (userId, driveId, drive) =>
+    request(`/management/drives/${driveId}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ userId, drive }),
+    }),
+  getAuditLogs: (userId) => request(`/management/audit/${userId}`),
 };
 
 export const createEventsStream = () => new EventSource(`${API_BASE}/events`);

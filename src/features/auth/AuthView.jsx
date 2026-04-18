@@ -6,6 +6,7 @@ const emptyRegisterForm = {
   email: "",
   dob: "",
   roll: "",
+  role: "student",
   password: "",
   confirmPassword: "",
 };
@@ -88,7 +89,7 @@ export default function AuthView({ onLogin, onRegister, errorMessage }) {
           >
             <h2>Welcome back</h2>
             <p className="muted">
-              Use `Demo Student` / `demo` or create a new account.
+              Use Demo Student / demo or Placement Coordinator / coord.
             </p>
             <input
               type="text"
@@ -175,6 +176,18 @@ export default function AuthView({ onLogin, onRegister, errorMessage }) {
                 }))
               }
             />
+            <select
+              value={registerForm.role}
+              onChange={(event) =>
+                setRegisterForm((current) => ({
+                  ...current,
+                  role: event.target.value,
+                }))
+              }
+            >
+              <option value="student">Student account</option>
+              <option value="coordinator">Coordinator account</option>
+            </select>
             <div className="password-field">
               <input
                 type={showRegisterPassword ? "text" : "password"}
