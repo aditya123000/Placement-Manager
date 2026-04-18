@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { techStack } from "../placement/data";
 
 const emptyRegisterForm = {
   name: "",
   email: "",
   dob: "",
   roll: "",
+  officeId: "",
+  designation: "",
   role: "student",
   password: "",
   confirmPassword: "",
@@ -15,14 +16,16 @@ export default function AuthView({ onLogin, onRegister, errorMessage }) {
   const [mode, setMode] = useState("login");
   const [loginForm, setLoginForm] = useState({ name: "", password: "" });
   const [registerForm, setRegisterForm] = useState(emptyRegisterForm);
+  const [registerRole, setRegisterRole] = useState("student");
   const [showLoginPassword, setShowLoginPassword] = useState(false);
   const [showRegisterPassword, setShowRegisterPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const handleRegister = (event) => {
     event.preventDefault();
-    onRegister(registerForm, () => {
+    onRegister({ ...registerForm, role: registerRole }, () => {
       setMode("login");
+      setRegisterRole("student");
       setRegisterForm(emptyRegisterForm);
     });
   };
@@ -32,7 +35,7 @@ export default function AuthView({ onLogin, onRegister, errorMessage }) {
       <div className="auth-hero">
         <div className="hero-copy">
           <span className="eyebrow">Placement Manager</span>
-          <h1>Student placement workflows, rebuilt as a React app.</h1>
+          <h1>Student placement workflows, built for real campus operations.</h1>
           <p>
             Track drives, manage rich student profiles, monitor applications,
             review analytics, and keep off-campus opportunities in one clean dashboard.
@@ -50,13 +53,6 @@ export default function AuthView({ onLogin, onRegister, errorMessage }) {
               <i className="fa-solid fa-circle-check" />
               Analytics, resources, and applications
             </div>
-          </div>
-          <div className="tag-grid auth-stack-grid">
-            {techStack.map((item) => (
-              <span key={item} className="stack-pill">
-                {item}
-              </span>
-            ))}
           </div>
         </div>
       </div>
@@ -133,9 +129,26 @@ export default function AuthView({ onLogin, onRegister, errorMessage }) {
             <p className="muted">
               Registration creates a local browser profile for this demo.
             </p>
+            <div className="auth-tabs role-tabs">
+              <button
+                className={registerRole === "student" ? "active" : ""}
+                type="button"
+                onClick={() => setRegisterRole("student")}
+              >
+                Register as Student
+              </button>
+              <button
+                className={registerRole === "coordinator" ? "active" : ""}
+                type="button"
+                onClick={() => setRegisterRole("coordinator")}
+              >
+                Register as Coordinator
+              </button>
+            </div>
             <input
               type="text"
               placeholder="Full Name"
+              required
               value={registerForm.name}
               onChange={(event) =>
                 setRegisterForm((current) => ({
@@ -147,6 +160,7 @@ export default function AuthView({ onLogin, onRegister, errorMessage }) {
             <input
               type="email"
               placeholder="Email"
+              required
               value={registerForm.email}
               onChange={(event) =>
                 setRegisterForm((current) => ({
@@ -155,43 +169,66 @@ export default function AuthView({ onLogin, onRegister, errorMessage }) {
                 }))
               }
             />
-            <input
-              type="date"
-              value={registerForm.dob}
-              onChange={(event) =>
-                setRegisterForm((current) => ({
-                  ...current,
-                  dob: event.target.value,
-                }))
-              }
-            />
-            <input
-              type="text"
-              placeholder="University Roll Number"
-              value={registerForm.roll}
-              onChange={(event) =>
-                setRegisterForm((current) => ({
-                  ...current,
-                  roll: event.target.value,
-                }))
-              }
-            />
-            <select
-              value={registerForm.role}
-              onChange={(event) =>
-                setRegisterForm((current) => ({
-                  ...current,
-                  role: event.target.value,
-                }))
-              }
-            >
-              <option value="student">Student account</option>
-              <option value="coordinator">Coordinator account</option>
-            </select>
+            {registerRole === "student" ? (
+              <>
+                <input
+                  type="date"
+                  placeholder="Date of Birth"
+                  required
+                  value={registerForm.dob}
+                  onChange={(event) =>
+                    setRegisterForm((current) => ({
+                      ...current,
+                      dob: event.target.value,
+                    }))
+                  }
+                />
+                <input
+                  type="text"
+                  placeholder="University Roll Number"
+                  required
+                  value={registerForm.roll}
+                  onChange={(event) =>
+                    setRegisterForm((current) => ({
+                      ...current,
+                      roll: event.target.value,
+                    }))
+                  }
+                />
+              </>
+            ) : (
+              <>
+                <input
+                  type="text"
+                  placeholder="Coordinator Office ID"
+                  required
+                  value={registerForm.officeId}
+                  onChange={(event) =>
+                    setRegisterForm((current) => ({
+                      ...current,
+                      officeId: event.target.value,
+                    }))
+                  }
+                />
+                <input
+                  type="text"
+                  placeholder="Designation (e.g., Placement Officer)"
+                  required
+                  value={registerForm.designation}
+                  onChange={(event) =>
+                    setRegisterForm((current) => ({
+                      ...current,
+                      designation: event.target.value,
+                    }))
+                  }
+                />
+              </>
+            )}
             <div className="password-field">
               <input
                 type={showRegisterPassword ? "text" : "password"}
                 placeholder="Password"
+                required
                 value={registerForm.password}
                 onChange={(event) =>
                   setRegisterForm((current) => ({
@@ -212,6 +249,7 @@ export default function AuthView({ onLogin, onRegister, errorMessage }) {
               <input
                 type={showConfirmPassword ? "text" : "password"}
                 placeholder="Confirm Password"
+                required
                 value={registerForm.confirmPassword}
                 onChange={(event) =>
                   setRegisterForm((current) => ({

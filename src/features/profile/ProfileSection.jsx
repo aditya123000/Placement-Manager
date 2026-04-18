@@ -40,7 +40,7 @@ export default function ProfileSection({
           <div className="form-grid">
           <input value={form.name} onChange={(e) => updateField("name", e.target.value)} placeholder="Full Name" />
           <input value={form.email} onChange={(e) => updateField("email", e.target.value)} placeholder="Email" type="email" />
-          <input value={form.dob} onChange={(e) => updateField("dob", e.target.value)} type="date" />
+          <input value={form.dob} onChange={(e) => updateField("dob", e.target.value)} type="date" placeholder="Date of Birth" aria-label="Date of Birth" />
           <input value={form.phone} onChange={(e) => updateField("phone", e.target.value)} placeholder="Phone Number" />
           <input value={form.alternatePhone} onChange={(e) => updateField("alternatePhone", e.target.value)} placeholder="Alternate Phone" />
           <input value={form.gender} onChange={(e) => updateField("gender", e.target.value)} placeholder="Gender" />
@@ -49,24 +49,28 @@ export default function ProfileSection({
           <input value={form.state} onChange={(e) => updateField("state", e.target.value)} placeholder="State" />
           <input value={form.branch} onChange={(e) => updateField("branch", e.target.value)} placeholder="Branch" />
           <input value={form.specialization} onChange={(e) => updateField("specialization", e.target.value)} placeholder="Specialization" />
-          <input value={form.year} onChange={(e) => updateField("year", e.target.value)} placeholder="Year of Study" type="number" />
+          <input value={form.year} onChange={(e) => updateField("year", e.target.value)} placeholder="Year of Study" type="number" min="0" aria-label="Year of Study" />
           <input value={form.section} onChange={(e) => updateField("section", e.target.value)} placeholder="Section" />
-          <input value={form.semester} onChange={(e) => updateField("semester", e.target.value)} placeholder="Semester" type="number" />
-          <input value={form.academicCGPA} onChange={(e) => updateField("academicCGPA", e.target.value)} placeholder="CGPA" type="number" step="0.1" />
-          <input value={form.backlogs} onChange={(e) => updateField("backlogs", e.target.value)} placeholder="Backlogs" type="number" />
-          <input value={form.tenth} onChange={(e) => updateField("tenth", e.target.value)} placeholder="10th Percentage" type="number" step="0.1" />
-          <input value={form.twelfth} onChange={(e) => updateField("twelfth", e.target.value)} placeholder="12th Percentage" type="number" step="0.1" />
-          <input value={form.resumeVersion} onChange={(e) => updateField("resumeVersion", e.target.value)} placeholder="Resume Filename" />
+          <input value={form.semester} onChange={(e) => updateField("semester", e.target.value)} placeholder="Semester" type="number" min="0" aria-label="Semester" />
+          <input value={form.academicCGPA} onChange={(e) => updateField("academicCGPA", e.target.value)} placeholder="CGPA" type="number" step="0.1" min="0" aria-label="CGPA" />
+          <input value={form.backlogs} onChange={(e) => updateField("backlogs", e.target.value)} placeholder="Backlogs" type="number" min="0" aria-label="Backlogs" />
+          <input value={form.tenth} onChange={(e) => updateField("tenth", e.target.value)} placeholder="10th %" type="number" step="0.1" min="0" aria-label="10th Percentage" />
+          <input value={form.twelfth} onChange={(e) => updateField("twelfth", e.target.value)} placeholder="12th %" type="number" step="0.1" min="0" aria-label="12th Percentage" />
+          <input value={form.diploma} onChange={(e) => updateField("diploma", e.target.value)} placeholder="Diploma %" type="number" step="0.1" min="0" aria-label="Diploma Percentage" />
+          <input value={form.resumeVersion} onChange={(e) => updateField("resumeVersion", e.target.value)} placeholder="Resume Filename" aria-label="Resume Filename" />
           <input value={form.portfolioUrl} onChange={(e) => updateField("portfolioUrl", e.target.value)} placeholder="Portfolio URL" />
           <input value={form.linkedinUrl} onChange={(e) => updateField("linkedinUrl", e.target.value)} placeholder="LinkedIn URL" />
           <input value={form.githubUrl} onChange={(e) => updateField("githubUrl", e.target.value)} placeholder="GitHub URL" />
           <input value={form.leetcodeUrl} onChange={(e) => updateField("leetcodeUrl", e.target.value)} placeholder="LeetCode URL" />
           <input value={form.preferredLocations} onChange={(e) => updateField("preferredLocations", e.target.value)} placeholder="Preferred Locations" />
           <input value={form.expectedCtc} onChange={(e) => updateField("expectedCtc", e.target.value)} placeholder="Expected CTC" />
+          <input value={form.internshipExperience} onChange={(e) => updateField("internshipExperience", e.target.value)} placeholder="Internship Experience" />
           <input value={form.technicalSkills} onChange={(e) => updateField("technicalSkills", e.target.value)} placeholder="Technical Skills" />
           <input value={form.softSkills} onChange={(e) => updateField("softSkills", e.target.value)} placeholder="Soft Skills" />
           <input value={form.certifications} onChange={(e) => updateField("certifications", e.target.value)} placeholder="Certifications" />
           <input value={form.achievements} onChange={(e) => updateField("achievements", e.target.value)} placeholder="Achievements" />
+          <input value={form.placementCoordinator} onChange={(e) => updateField("placementCoordinator", e.target.value)} placeholder="Placement Coordinator" />
+          <input value={form.mentorName} onChange={(e) => updateField("mentorName", e.target.value)} placeholder="Mentor Name" />
           <div className="form-actions">
             <button
               className="primary-button"
@@ -93,14 +97,14 @@ export default function ProfileSection({
           <div><span>State</span><strong>{currentUser.state || "N/A"}</strong></div>
           <div><span>Branch</span><strong>{currentUser.branch || "N/A"}</strong></div>
           <div><span>Specialization</span><strong>{currentUser.specialization || "N/A"}</strong></div>
-          <div><span>Year</span><strong>{currentUser.year || "N/A"}</strong></div>
+          <div><span>Year of Study</span><strong>{currentUser.year ?? "N/A"}</strong></div>
           <div><span>Section</span><strong>{currentUser.section || "N/A"}</strong></div>
-          <div><span>Semester</span><strong>{currentUser.semester || "N/A"}</strong></div>
-          <div><span>CGPA</span><strong>{currentUser.academicCGPA || "N/A"}</strong></div>
+          <div><span>Semester</span><strong>{currentUser.semester ?? "N/A"}</strong></div>
+          <div><span>CGPA</span><strong>{currentUser.academicCGPA ?? "N/A"}</strong></div>
           <div><span>Backlogs</span><strong>{currentUser.backlogs ?? "N/A"}</strong></div>
-          <div><span>10th %</span><strong>{currentUser.tenth || "N/A"}</strong></div>
-          <div><span>12th %</span><strong>{currentUser.twelfth || "N/A"}</strong></div>
-          <div><span>Resume</span><strong>{currentUser.resumeVersion || "N/A"}</strong></div>
+          <div><span>10th %</span><strong>{currentUser.tenth ?? "N/A"}</strong></div>
+          <div><span>12th %</span><strong>{currentUser.twelfth ?? "N/A"}</strong></div>
+          <div><span>Resume Filename</span><strong>{currentUser.resumeVersion || "N/A"}</strong></div>
           <div><span>Preferred Locations</span><strong>{currentUser.preferredLocations || "N/A"}</strong></div>
           <div><span>Expected CTC</span><strong>{currentUser.expectedCtc || "N/A"}</strong></div>
           <div><span>Portfolio</span><strong>{currentUser.portfolioUrl || "N/A"}</strong></div>
@@ -146,7 +150,7 @@ export default function ProfileSection({
           </div>
           <div>
             <span>Extracted CGPA</span>
-            <strong>{currentUser.resumeData?.extractedCgpa || currentUser.academicCGPA || "N/A"}</strong>
+            <strong>{currentUser.resumeData?.extractedCgpa ?? currentUser.academicCGPA ?? "N/A"}</strong>
           </div>
           <div>
             <span>Extracted Skills</span>

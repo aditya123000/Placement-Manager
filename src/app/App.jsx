@@ -143,6 +143,16 @@ export default function App() {
       return;
     }
 
+    if (form.role === "student" && (!form.dob || !form.roll)) {
+      setAuthError("Student registration requires date of birth and roll number.");
+      return;
+    }
+
+    if (form.role === "coordinator" && (!form.officeId || !form.designation)) {
+      setAuthError("Coordinator registration requires office ID and designation.");
+      return;
+    }
+
     try {
       await api.register(form);
       setAuthError("");
@@ -181,6 +191,11 @@ export default function App() {
 
   const handleToggleWishlist = async (driveId) => {
     await syncUser(() => api.toggleWishlist(currentUser.id, driveId));
+  };
+
+  const handleUndoApply = async (driveId) => {
+    await syncUser(() => api.unapplyFromDrive(currentUser.id, driveId));
+    setBannerMessage("Application removed from tracker.");
   };
 
   const handleAdvanceApplication = async (applicationId) => {
@@ -328,7 +343,7 @@ export default function App() {
               currentUser={currentUser}
               drives={drives}
               onApplyClick={setSelectedDrive}
-              onUndoApply={() => {}}
+              onUndoApply={handleUndoApply}
             />
           ) : null}
 

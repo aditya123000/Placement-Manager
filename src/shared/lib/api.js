@@ -76,6 +76,12 @@ export const api = {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userId }),
     }),
+  unapplyFromDrive: (userId, driveId) =>
+    request(`/drives/${driveId}/unapply`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ userId }),
+    }),
   toggleWishlist: (userId, driveId) =>
     request(`/drives/${driveId}/wishlist`, {
       method: "POST",

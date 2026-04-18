@@ -119,7 +119,7 @@
       "tenth": 0,
       "twelfth": 0,
       "diploma": 0,
-      "resumeVersion": "",
+      "resumeVersion": "Resume_new.pdf",
       "portfolioUrl": "",
       "linkedinUrl": "",
       "githubUrl": "",
@@ -144,7 +144,26 @@
       "profileHealth": "Needs completion",
       "currentOffer": null,
       "wishlist": [],
-      "resumeData": null,
+      "resumeData": {
+        "fileName": "Resume_new.pdf",
+        "extractedSkills": [
+          "Node.js",
+          "Express",
+          "JavaScript",
+          "Java",
+          "SQL",
+          "PostgreSQL",
+          "Git",
+          "API"
+        ],
+        "extractedCgpa": 0,
+        "extractedProjects": [
+          "level",
+          "understanding. Passionate about applying core CS concepts to real",
+          "world software systems."
+        ],
+        "lastParsedAt": "2026-04-18T19:39:32.939Z"
+      },
       "myApplications": []
     }
   ],
@@ -430,6 +449,16 @@
     }
   ],
   "notifications": [
+    {
+      "id": "1776541172939-f5c3c1",
+      "userId": "12345678",
+      "channel": "in-app,email",
+      "title": "Resume parsed successfully",
+      "message": "Skills, CGPA, and project highlights were extracted and match scores were refreshed.",
+      "createdAt": "2026-04-18T19:39:32.939Z",
+      "read": false,
+      "type": "resume"
+    },
     {
       "id": "1776533795716-062278",
       "userId": "CSE2025001",

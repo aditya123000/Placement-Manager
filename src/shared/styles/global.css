@@ -139,6 +139,15 @@ small {
   margin-bottom: 24px;
 }
 
+.role-tabs {
+  margin-bottom: 4px;
+}
+
+.role-tabs button {
+  padding: 12px;
+  font-size: 0.92rem;
+}
+
 .auth-tabs button,
 .ghost-button,
 .primary-button,

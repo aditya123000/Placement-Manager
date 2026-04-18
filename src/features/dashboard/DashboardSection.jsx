@@ -97,7 +97,8 @@ export default function DashboardSection({
             </thead>
             <tbody>
               {drives.map((drive) => {
-                const eligibility = drive.eligibilityDetail || getEligibility(currentUser, drive);
+                const policyEligibility = getEligibility(currentUser, drive);
+                const smartEligibilitySummary = drive.eligibilityDetail?.summary;
                 const isApplied = drive.status === "Applied";
 
                 return (
@@ -110,13 +111,13 @@ export default function DashboardSection({
                       </span>
                     </td>
                     <td>{formatDate(drive.date)}</td>
-                    <td>{eligibility.summary || `${drive.eligibility}+ CGPA / ${drive.maxBacklogs} backlog`}</td>
+                    <td>{smartEligibilitySummary || `${drive.eligibility}+ CGPA / ${drive.maxBacklogs} backlog`}</td>
                     <td>{drive.matchScore ? `${drive.matchScore}%` : "Pending"}</td>
                     <td>{drive.package}</td>
                     <td>
-                      {!eligibility.eligible ? (
+                      {!policyEligibility.eligible ? (
                         <button className="table-button muted" type="button" disabled>
-                          {eligibility.reason}
+                          {policyEligibility.reason}
                         </button>
                       ) : isApplied ? (
                         <div className="inline-actions">

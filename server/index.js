@@ -156,26 +156,46 @@ app.post("/api/auth/login", (request, response) => {
 
 app.post("/api/auth/register", (request, response) => {
   try {
-    const { name, email, dob, roll, password, role } = request.body;
+    const {
+      name,
+      email,
+      dob,
+      roll,
+      officeId,
+      designation,
+      password,
+      role,
+    } = request.body;
     const accountRole = role === "coordinator" ? "coordinator" : "student";
+    const accountId = accountRole === "coordinator" ? officeId : roll;
 
-    if (!name || !email || !dob || !roll || !password) {
-      response.status(400).json({ message: "Missing required registration fields" });
+    if (!name || !email || !password) {
+      response.status(400).json({ message: "Missing required registration fields." });
+      return;
+    }
+
+    if (accountRole === "student" && (!dob || !roll)) {
+      response.status(400).json({ message: "Student registration requires date of birth and roll number." });
+      return;
+    }
+
+    if (accountRole === "coordinator" && (!officeId || !designation)) {
+      response.status(400).json({ message: "Coordinator registration requires office ID and designation." });
       return;
     }
 
     const state = updateState((current) => {
-      if (current.users.some((user) => user.roll === roll || user.email === email)) {
+      if (current.users.some((user) => user.id === accountId || user.email === email)) {
         throw new Error("Account already exists");
       }
 
       current.users.push({
-        id: roll,
+        id: accountId,
         role: accountRole,
         name,
         email,
-        dob,
-        roll,
+        dob: accountRole === "student" ? dob : "",
+        roll: accountRole === "student" ? roll : officeId,
         password,
         phone: "",
         alternatePhone: "",
@@ -183,8 +203,8 @@ app.post("/api/auth/register", (request, response) => {
         address: "",
         city: "",
         state: "",
-        branch: "",
-        specialization: "",
+        branch: accountRole === "student" ? "" : "Placement Office",
+        specialization: accountRole === "student" ? "" : designation,
         year: 0,
         section: "",
         semester: 0,
@@ -221,12 +241,12 @@ app.post("/api/auth/register", (request, response) => {
         resumeData: null,
         myApplications: [],
       });
-      const actor = { id: roll, name };
-      addAudit(current, actor, "registered", "user", roll, `Registered a new ${accountRole} account.`);
+      const actor = { id: accountId, name };
+      addAudit(current, actor, "registered", "user", accountId, `Registered a new ${accountRole} account.`);
       return current;
     });
 
-    const created = state.users.find((user) => user.roll === roll);
+    const created = state.users.find((user) => user.id === accountId);
     response.status(201).json({ user: enrichUser(created, state) });
   } catch (error) {
     response.status(400).json({ message: error.message });
@@ -337,6 +357,39 @@ app.post("/api/drives/:driveId/apply", (request, response) => {
 
   const user = state.users.find((item) => item.id === request.body.userId);
   response.json({ user: enrichUser(user, state) });
+});
+
+app.post("/api/drives/:driveId/unapply", (request, response) => {
+  try {
+    const state = updateState((current) => {
+      const user = current.users.find((item) => item.id === request.body.userId);
+      const drive = current.drives.find((item) => item.id === request.params.driveId);
+
+      if (!user || !drive) {
+        throw new Error("User or drive not found");
+      }
+
+      user.myApplications = (user.myApplications || []).filter(
+        (item) => item.driveId !== drive.id,
+      );
+
+      createNotification(
+        current,
+        user.id,
+        "Application withdrawn",
+        `${drive.company} application was removed from your tracker.`,
+        "application",
+      );
+      addAudit(current, user, "application_withdrawn", "drive", drive.id, `Withdrew from ${drive.company}.`);
+
+      return current;
+    });
+
+    const user = state.users.find((item) => item.id === request.body.userId);
+    response.json({ user: enrichUser(user, state) });
+  } catch (error) {
+    response.status(400).json({ message: error.message });
+  }
 });
 
 app.patch("/api/applications/:applicationId/status", (request, response) => {
