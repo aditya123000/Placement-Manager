@@ -63,7 +63,7 @@
           "package": "9.5 LPA",
           "location": "Bengaluru",
           "appliedOn": "2026-03-28",
-          "nextStepDate": "2026-04-08",
+          "nextStepDate": "2026-04-18",
           "recruiter": "Campus Hiring Team",
           "mode": "Hybrid",
           "roleDescription": "Support product and growth teams with analytics, stakeholder reporting, and operational problem solving.",
@@ -379,6 +379,86 @@
     }
   ],
   "notifications": [
+    {
+      "id": "1776252988267-857ac6",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Application status updated",
+      "message": "FinTech Pro moved to Rejected.",
+      "createdAt": "2026-04-15T11:36:28.267Z",
+      "read": false,
+      "type": "application"
+    },
+    {
+      "id": "1776252988052-2bd1cc",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Application status updated",
+      "message": "FinTech Pro moved to Rejected.",
+      "createdAt": "2026-04-15T11:36:28.052Z",
+      "read": false,
+      "type": "application"
+    },
+    {
+      "id": "1776252987906-a34fa1",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Application status updated",
+      "message": "FinTech Pro moved to Rejected.",
+      "createdAt": "2026-04-15T11:36:27.906Z",
+      "read": false,
+      "type": "application"
+    },
+    {
+      "id": "1776252987742-fb2d93",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Application status updated",
+      "message": "FinTech Pro moved to Rejected.",
+      "createdAt": "2026-04-15T11:36:27.742Z",
+      "read": false,
+      "type": "application"
+    },
+    {
+      "id": "1776252987583-96e74f",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Application status updated",
+      "message": "FinTech Pro moved to Rejected.",
+      "createdAt": "2026-04-15T11:36:27.583Z",
+      "read": false,
+      "type": "application"
+    },
+    {
+      "id": "1776252987420-d2966d",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Application status updated",
+      "message": "FinTech Pro moved to Rejected.",
+      "createdAt": "2026-04-15T11:36:27.420Z",
+      "read": false,
+      "type": "application"
+    },
+    {
+      "id": "1776252987243-fb1c2a",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Application status updated",
+      "message": "FinTech Pro moved to Rejected.",
+      "createdAt": "2026-04-15T11:36:27.243Z",
+      "read": false,
+      "type": "application"
+    },
+    {
+      "id": "1776252980825-defc90",
+      "userId": "CSE2025001",
+      "channel": "in-app,email",
+      "title": "Application status updated",
+      "message": "FinTech Pro moved to Rejected.",
+      "createdAt": "2026-04-15T11:36:20.825Z",
+      "read": false,
+      "type": "application"
+    },
     {
       "id": "1775401326416-106a2c",
       "userId": "CSE2025001",
