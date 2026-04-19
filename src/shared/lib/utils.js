@@ -1,7 +1,7 @@
 export const STORAGE_KEYS = {
-  registeredStudent: "placement-manager-registered-student",
-  loggedInUser: "placement-manager-logged-in-user",
-  loginFlag: "placement-manager-is-logged-in",
+  registeredStudent: "placify-registered-student",
+  loggedInUser: "placify-logged-in-user",
+  loginFlag: "placify-is-logged-in",
 };
 
 export const formatDate = (value) =>

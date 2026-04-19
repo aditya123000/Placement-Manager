@@ -1,6 +1,6 @@
-# Placement Manager
+# Placify
 
-Placement Manager is now a lightweight full-stack campus placement workflow platform. It combines a React frontend with a Node.js/Express API so the project can demonstrate realistic placement operations instead of only browser-local demo state.
+Placify is a lightweight full-stack campus placement workflow platform. It combines a React frontend with a Node.js/Express API so the project can demonstrate realistic placement operations instead of only browser-local demo state.
 
 ## Highlights
 
