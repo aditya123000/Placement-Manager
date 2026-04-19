@@ -34,7 +34,7 @@ export default function AuthView({ onLogin, onRegister, errorMessage }) {
     <div className="auth-shell">
       <div className="auth-hero">
         <div className="hero-copy">
-          <span className="eyebrow">Placement Manager</span>
+          <span className="eyebrow">Placify</span>
           <h1>Student placement workflows, built for real campus operations.</h1>
           <p>
             Track drives, manage rich student profiles, monitor applications,

@@ -265,7 +265,7 @@ export default function App() {
 
   const handleDownloadPolicy = () => {
     const content = [
-      "Privacy Policy - Placement Manager",
+      "Privacy Policy - Placify",
       "",
       "1. Information We Collect",
       "- Student profile, applications, parsed resume fields, notifications, and calendar events.",
@@ -280,7 +280,7 @@ export default function App() {
     const blob = new Blob([content], { type: "text/plain" });
     const link = document.createElement("a");
     link.href = URL.createObjectURL(blob);
-    link.download = "Placement_Manager_Privacy_Policy.txt";
+    link.download = "Placify_Privacy_Policy.txt";
     link.click();
     URL.revokeObjectURL(link.href);
   };

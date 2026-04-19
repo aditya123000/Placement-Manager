@@ -685,7 +685,7 @@ app.get("/api/management/audit/:userId", (request, response) => {
 });
 
 app.listen(port, () => {
-  console.log(`Placement Manager API running on http://localhost:${port}`);
+  console.log(`Placify API running on http://localhost:${port}`);
 });
 
 export default app;
