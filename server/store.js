@@ -2,9 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { defaultStudent, driveSeeds, offCampusJobs } from "../src/features/placement/data.js";
 
-const dataDirectory = process.env.VERCEL
-  ? path.join("/tmp", "placement-manager", "data")
-  : path.resolve("server", "data");
+const dataDirectory = path.resolve("server", "data");
 const databasePath = path.join(dataDirectory, "db.json");
 const emailLogPath = path.join(dataDirectory, "email.log");
 

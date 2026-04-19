@@ -684,10 +684,8 @@ app.get("/api/management/audit/:userId", (request, response) => {
   }
 });
 
-if (!process.env.VERCEL) {
-  app.listen(port, () => {
-    console.log(`Placement Manager API running on http://localhost:${port}`);
-  });
-}
+app.listen(port, () => {
+  console.log(`Placement Manager API running on http://localhost:${port}`);
+});
 
 export default app;
