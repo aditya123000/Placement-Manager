@@ -1,6 +1,30 @@
 {
   "users": [
     {
+      "role": "student",
+      "wishlist": [
+        "robo-corp",
+        "global-titans"
+      ],
+      "myApplications": [
+        {
+          "id": "fintech-pro-application",
+          "driveId": "fintech-pro",
+          "source": "drive",
+          "company": "FinTech Pro",
+          "role": "Business Analyst",
+          "status": "Rejected",
+          "stage": "Rejected",
+          "package": "9.5 LPA",
+          "location": "Bengaluru",
+          "appliedOn": "2026-03-28",
+          "nextStepDate": "2026-04-21",
+          "recruiter": "Campus Hiring Team",
+          "mode": "Hybrid",
+          "roleDescription": "Support product and growth teams with analytics, stakeholder reporting, and operational problem solving.",
+          "companyDescription": "FinTech Pro is a digital payments and lending platform hiring analysts for business intelligence and product operations."
+        }
+      ],
       "name": "Demo Student",
       "email": "demo@college.edu",
       "dob": "2003-01-01",
@@ -51,30 +75,7 @@
         "ctc": "9.5 LPA",
         "joining": "2026-07-14"
       },
-      "myApplications": [
-        {
-          "id": "fintech-pro-application",
-          "driveId": "fintech-pro",
-          "source": "drive",
-          "company": "FinTech Pro",
-          "role": "Business Analyst",
-          "status": "Rejected",
-          "stage": "Rejected",
-          "package": "9.5 LPA",
-          "location": "Bengaluru",
-          "appliedOn": "2026-03-28",
-          "nextStepDate": "2026-04-21",
-          "recruiter": "Campus Hiring Team",
-          "mode": "Hybrid",
-          "roleDescription": "Support product and growth teams with analytics, stakeholder reporting, and operational problem solving.",
-          "companyDescription": "FinTech Pro is a digital payments and lending platform hiring analysts for business intelligence and product operations."
-        }
-      ],
       "id": "CSE2025001",
-      "wishlist": [
-        "robo-corp",
-        "global-titans"
-      ],
       "resumeData": {
         "fileName": "Resume_new.pdf",
         "extractedSkills": [
@@ -97,6 +98,9 @@
       }
     },
     {
+      "role": "student",
+      "wishlist": [],
+      "myApplications": [],
       "id": "12345678",
       "name": "arnav",
       "email": "arnav@gmail.com",
@@ -143,7 +147,6 @@
       "profileCompletion": 20,
       "profileHealth": "Needs completion",
       "currentOffer": null,
-      "wishlist": [],
       "resumeData": {
         "fileName": "Resume_new.pdf",
         "extractedSkills": [
@@ -163,8 +166,59 @@
           "world software systems."
         ],
         "lastParsedAt": "2026-04-18T19:39:32.939Z"
-      },
-      "myApplications": []
+      }
+    },
+    {
+      "role": "coordinator",
+      "wishlist": [],
+      "myApplications": [],
+      "id": "TPC-COORD-01",
+      "name": "Placement Coordinator",
+      "email": "coordinator@college.edu",
+      "dob": "1990-07-14",
+      "roll": "TPC-COORD-01",
+      "password": "coord",
+      "phone": "+91 90000 11111",
+      "alternatePhone": "",
+      "gender": "",
+      "address": "Training and Placement Office",
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "branch": "Placement Office",
+      "specialization": "Campus Operations",
+      "year": 0,
+      "section": "",
+      "semester": 0,
+      "academicCGPA": 0,
+      "backlogs": 0,
+      "tenth": 0,
+      "twelfth": 0,
+      "diploma": 0,
+      "resumeVersion": "",
+      "portfolioUrl": "",
+      "linkedinUrl": "",
+      "githubUrl": "",
+      "leetcodeUrl": "",
+      "preferredLocations": "",
+      "expectedCtc": "",
+      "willingToRelocate": true,
+      "internshipExperience": "",
+      "certifications": "",
+      "achievements": "",
+      "technicalSkills": "",
+      "softSkills": "",
+      "placementCoordinator": "",
+      "mentorName": "",
+      "attendance": 0,
+      "noticeBoardOptIn": true,
+      "isPlaced": false,
+      "placedCategory": null,
+      "jobsOffered": 0,
+      "dreamApplicationsLeft": 0,
+      "profileCompletion": 100,
+      "profileHealth": "Operational",
+      "currentOffer": null,
+      "resumeData": null
     }
   ],
   "drives": [
@@ -456,7 +510,7 @@
       "title": "Resume parsed successfully",
       "message": "Skills, CGPA, and project highlights were extracted and match scores were refreshed.",
       "createdAt": "2026-04-18T19:39:32.939Z",
-      "read": false,
+      "read": true,
       "type": "resume"
     },
     {
@@ -1019,5 +1073,6 @@
       "read": true,
       "type": "deadline"
     }
-  ]
+  ],
+  "audits": []
 }
